@@ -75,7 +75,7 @@ function Home() {
           <div><p className="text-sm font-extrabold">{signedIn ? "Aptidão não verificada" : "Você pode doar agora"}</p><p className="mt-0.5 text-xs leading-snug">{signedIn ? "Confirme sua aptidão com um serviço de hemoterapia antes de doar." : "Intervalo mínimo entre doações cumprido."}</p></div>
         </div>
         <div className="mt-3 flex min-h-[72px] items-center gap-3 rounded-[17px] bg-alert px-4 py-3 text-primary">
-          <Bell size={20} className="shrink-0" /><div><p className="text-sm font-extrabold">Nova solicitação compatível</p><p className="text-xs leading-snug">Hospital Central precisa de A+ · 2,4 km</p></div>
+          <Bell size={20} className="shrink-0" /><div><p className="text-sm font-extrabold">{signedIn ? "Solicitação de exemplo" : "Nova solicitação compatível"}</p><p className="text-xs leading-snug">Hospital Central precisa de A+ · 2,4 km</p></div>
         </div>
 
         <section className="mt-7" aria-labelledby="campaigns-heading">
