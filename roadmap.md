@@ -1,3 +1,5 @@
 - [x] Reproduzir a tela 1 (cadastro) com visual do PDF e cadastro persistente.
 - [x] Reproduzir a tela 2 (início) com dados do protótipo claramente identificados como exemplos.
-- [x] Conferir apresentação em celular e computador e validar erros da prévia.
+- [ ] Reproduzir a tela 3 (detalhe e confirmação) e conectar à tela inicial.
+- [ ] Reproduzir a tela 4 (nova solicitação) com formulário funcional de demonstração.
+- [ ] Conferir as telas 3 e 4 em celular e computador e validar erros da prévia.
