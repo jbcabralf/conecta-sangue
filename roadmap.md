@@ -2,4 +2,4 @@
 - [x] Reproduzir a tela 2 (início) com dados do protótipo claramente identificados como exemplos.
 - [x] Reproduzir a tela 3 (detalhe e confirmação) e conectar à tela inicial.
 - [x] Reproduzir a tela 4 (nova solicitação) com formulário funcional de demonstração.
-- [ ] Conferir as telas 3 e 4 em celular e computador e validar erros da prévia.
+- [x] Conferir as telas 3 e 4 em celular e computador e validar erros da prévia.
