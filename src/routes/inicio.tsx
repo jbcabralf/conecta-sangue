@@ -74,9 +74,9 @@ function Home() {
           <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-success-foreground text-primary-foreground"><Check size={22} /></span>
           <div><p className="text-sm font-extrabold">{signedIn ? "Aptidão não verificada" : "Você pode doar agora"}</p><p className="mt-0.5 text-xs leading-snug">{signedIn ? "Confirme sua aptidão com um serviço de hemoterapia antes de doar." : "Intervalo mínimo entre doações cumprido."}</p></div>
         </div>
-        <div className="mt-3 flex min-h-[72px] items-center gap-3 rounded-[17px] bg-alert px-4 py-3 text-primary">
+        <Link to="/solicitacao" className="mt-3 flex min-h-[72px] items-center gap-3 rounded-[17px] bg-alert px-4 py-3 text-primary transition-colors hover:bg-secondary" aria-label="Abrir solicitação de exemplo do Hospital Central">
           <Bell size={20} className="shrink-0" /><div><p className="text-sm font-extrabold">{signedIn ? "Solicitação de exemplo" : "Nova solicitação compatível"}</p><p className="text-xs leading-snug">Hospital Central precisa de A+ · 2,4 km</p></div>
-        </div>
+        </Link>
 
         <section className="mt-7" aria-labelledby="campaigns-heading">
           <div className="mb-2 flex items-center justify-between"><h2 id="campaigns-heading" className="text-base font-extrabold">Campanhas</h2><span className="text-xs font-bold text-primary">Ver todas</span></div>
@@ -91,11 +91,11 @@ function Home() {
           <h2 id="requests-heading" className="mb-2 text-base font-extrabold">Solicitações perto de você</h2>
           <div className="space-y-2">
             {[{ name: "Hospital Central", type: "A+", distance: "2,4 km", urgent: true }, { name: "Banco de Sangue Regional", type: "AB+", distance: "5,1 km", urgent: false }].map(request =>
-              <article key={request.name} className="flex min-h-[74px] items-center gap-3 rounded-[16px] border border-border bg-background px-3 py-2">
+              <Link to="/solicitacao" key={request.name} className="flex min-h-[74px] items-center gap-3 rounded-[16px] border border-border bg-background px-3 py-2 transition-colors hover:bg-accent" aria-label={`Ver solicitação de exemplo de ${request.name}`}>
                 <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-extrabold text-primary-foreground">{request.type}</span>
                 <div className="min-w-0 flex-1"><h3 className="text-xs font-extrabold leading-tight">{request.name}</h3><p className="mt-1 flex items-center gap-0.5 text-[11px] text-muted-foreground"><MapPin size={11} /> {request.distance}</p></div>
                 <span className={`shrink-0 rounded-full px-2 py-1 text-[10px] font-bold ${request.urgent ? "bg-warning text-warning-foreground" : "bg-muted text-muted-foreground"}`}>{request.urgent ? "Urgente" : "Normal"}</span>
-              </article>
+              </Link>
             )}
           </div>
         </section>
@@ -103,7 +103,7 @@ function Home() {
       <nav aria-label="Navegação principal" className="grid h-[68px] grid-cols-4 border-t border-border bg-background">
         <Link to="/inicio" aria-current="page" className="flex flex-col items-center justify-center gap-1 text-primary"><House size={19} strokeWidth={2.3} /><span className="text-[10px] font-bold">Início</span></Link>
         <span className="flex flex-col items-center justify-center gap-1 text-muted-foreground" aria-label="Campanhas: disponível em breve"><Flag size={19} /><span className="text-[10px] font-semibold">Campanhas</span></span>
-        <span className="flex flex-col items-center justify-center gap-1 text-muted-foreground" aria-label="Pedir sangue: disponível em breve"><PlusCircle size={19} /><span className="text-[10px] font-semibold">Pedir sangue</span></span>
+        <Link to="/nova-solicitacao" className="flex flex-col items-center justify-center gap-1 text-muted-foreground hover:text-primary"><PlusCircle size={19} /><span className="text-[10px] font-semibold">Pedir sangue</span></Link>
         <span className="flex flex-col items-center justify-center gap-1 text-muted-foreground" aria-label="Histórico: disponível em breve"><Clock3 size={19} /><span className="text-[10px] font-semibold">Histórico</span></span>
       </nav>
     </div>

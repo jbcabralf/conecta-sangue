@@ -11,3 +11,4 @@
 
 - Keep donor identity in Cloud Auth and donor details in an owner-scoped `donor_profiles` table; this avoids exposing health-adjacent profile data across users.
 - Keep the prototype's sample campaigns, requests, and donation status clearly distinguished from verified live information until those workflows exist.
+- Keep request confirmation and publication as local prototype interactions until a verified live request workflow is implemented; this prevents demo actions from appearing operational.
