@@ -1,9 +1,11 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { Check, Clock3, Flag, House, PlusCircle, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { supabase } from "@/integrations/supabase/client";
+import { normalizeType } from "@/lib/blood";
 
 export const Route = createFileRoute("/nova-solicitacao")({
   head: () => ({ meta: [
@@ -26,10 +28,29 @@ function NewRequest() {
   const [location, setLocation] = useState("");
   const [patient, setPatient] = useState("");
   const [published, setPublished] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setError(null);
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) { setError("Entre na sua conta para salvar solicitações."); return; }
+    setSaving(true);
+    const { error: insertError } = await supabase.from("blood_requests").insert({
+      user_id: user.id,
+      requester_kind: requester === "hospital" ? "hospital" : "familiar",
+      blood_type: normalizeType(bloodType),
+      urgent: urgency === "urgent",
+      location: location.trim(),
+      patient_name: patient.trim(),
+    });
+    setSaving(false);
+    if (insertError) { setError("Não foi possível salvar. Tente novamente."); return; }
     setPublished(true);
+    setLocation(""); setPatient("");
+    setTimeout(() => navigate({ to: "/inicio" }), 1200);
   }
 
   return <main className="min-h-dvh bg-background py-0 sm:px-4 sm:py-10">
@@ -66,8 +87,9 @@ function NewRequest() {
         <div className="mt-3 space-y-1.5"><Label htmlFor="donation-location" className="text-xs font-bold">Local da doação</Label><Input id="donation-location" value={location} onChange={event => { setLocation(event.target.value); setPublished(false); }} required maxLength={120} placeholder="Hospital ou banco de sangue" className="app-field" /></div>
         <div className="mt-3 space-y-1.5"><Label htmlFor="patient-name" className="text-xs font-bold">Nome do paciente</Label><Input id="patient-name" value={patient} onChange={event => { setPatient(event.target.value); setPublished(false); }} required maxLength={120} placeholder="Quem vai receber a doação?" className="app-field" /></div>
 
-        {published && <p role="status" className="mt-3 flex items-start gap-2 rounded-lg bg-success p-3 text-xs leading-relaxed text-success-foreground"><Check size={15} className="mt-0.5 shrink-0" /> Solicitação preparada nesta demonstração. Nenhum pedido real foi publicado.</p>}
-        <Button variant="blood" size="blood" type="submit" className="mt-auto">Publicar solicitação</Button>
+        {published && <p role="status" className="mt-3 flex items-start gap-2 rounded-lg bg-success p-3 text-xs leading-relaxed text-success-foreground"><Check size={15} className="mt-0.5 shrink-0" /> Solicitação salva na sua conta. Ela ainda não é enviada a doadores.</p>}
+        {error && <p role="alert" className="mt-3 rounded-lg bg-alert p-3 text-xs text-primary">{error}{error.startsWith("Entre") && <> <Link to="/" className="font-bold underline">Entrar</Link></>}</p>}
+        <Button variant="blood" size="blood" type="submit" disabled={saving} className="mt-auto">{saving ? "Salvando..." : "Publicar solicitação"}</Button>
       </form>
 
       <nav aria-label="Navegação principal" className="grid h-[68px] grid-cols-4 border-t border-border bg-background">

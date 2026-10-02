@@ -3,6 +3,15 @@ import { useEffect, useState } from "react";
 import { Bell, Check, Clock3, Flag, House, MapPin, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import { displayType, sampleRequests, timeAgo, type RequestView } from "@/lib/blood";
+
+function RequestCard({ request }: { request: RequestView }) {
+  return <Link to="/solicitacao" search={{ id: request.id }} className="flex min-h-[74px] items-center gap-3 rounded-[16px] border border-border bg-background px-3 py-2 transition-colors hover:bg-accent" aria-label={`Ver solicitação de ${request.name}`}>
+    <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-extrabold text-primary-foreground">{displayType(request.bloodType)}</span>
+    <div className="min-w-0 flex-1"><h3 className="truncate text-xs font-extrabold leading-tight">{request.name}</h3><p className="mt-1 flex items-center gap-0.5 text-[11px] text-muted-foreground">{request.distance ? <><MapPin size={11} /> {request.distance}</> : `Publicada ${request.published}`}</p></div>
+    <span className={`shrink-0 rounded-full px-2 py-1 text-[10px] font-bold ${request.urgent ? "bg-warning text-warning-foreground" : "bg-muted text-muted-foreground"}`}>{request.urgent ? "Urgente" : "Normal"}</span>
+  </Link>;
+}
 
 export const Route = createFileRoute("/inicio")({
   head: () => ({ meta: [
@@ -24,6 +33,7 @@ function Home() {
   const [signedIn, setSignedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [noticeOpen, setNoticeOpen] = useState(false);
+  const [myRequests, setMyRequests] = useState<RequestView[]>([]);
 
   useEffect(() => {
     let active = true;
@@ -43,6 +53,8 @@ function Home() {
             if (!error && active) setProfile(candidate);
           }
         }
+        const { data: reqs } = await supabase.from("blood_requests").select("*").order("created_at", { ascending: false });
+        if (active && reqs) setMyRequests(reqs.map(d => ({ id: d.id, name: d.location, area: d.requester_kind === "hospital" ? "Hospital ou banco" : "Familiar", distance: null, bloodType: d.blood_type, urgent: d.urgent, published: timeAgo(d.created_at), sample: false, patient: d.patient_name })));
       }
       if (active) setLoading(false);
     }
@@ -74,7 +86,7 @@ function Home() {
           <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-success-foreground text-primary-foreground"><Check size={22} /></span>
           <div><p className="text-sm font-extrabold">{signedIn ? "Aptidão não verificada" : "Você pode doar agora"}</p><p className="mt-0.5 text-xs leading-snug">{signedIn ? "Confirme sua aptidão com um serviço de hemoterapia antes de doar." : "Intervalo mínimo entre doações cumprido."}</p></div>
         </div>
-        <Link to="/solicitacao" className="mt-3 flex min-h-[72px] items-center gap-3 rounded-[17px] bg-alert px-4 py-3 text-primary transition-colors hover:bg-secondary" aria-label="Abrir solicitação de exemplo do Hospital Central">
+        <Link to="/solicitacao" search={{ id: "hospital-central" }} className="mt-3 flex min-h-[72px] items-center gap-3 rounded-[17px] bg-alert px-4 py-3 text-primary transition-colors hover:bg-secondary" aria-label="Abrir solicitação de exemplo do Hospital Central">
           <Bell size={20} className="shrink-0" /><div><p className="text-sm font-extrabold">{signedIn ? "Solicitação de exemplo" : "Nova solicitação compatível"}</p><p className="text-xs leading-snug">Hospital Central precisa de A+ · 2,4 km</p></div>
         </Link>
 
@@ -87,17 +99,14 @@ function Home() {
           </article>
         </section>
 
+        {myRequests.length > 0 && <section className="mt-7" aria-labelledby="my-requests-heading">
+          <h2 id="my-requests-heading" className="mb-2 text-base font-extrabold">Suas solicitações</h2>
+          <div className="space-y-2">{myRequests.map(r => <RequestCard key={r.id} request={r} />)}</div>
+        </section>}
+
         <section className="mt-7" aria-labelledby="requests-heading">
           <h2 id="requests-heading" className="mb-2 text-base font-extrabold">Solicitações perto de você</h2>
-          <div className="space-y-2">
-            {[{ name: "Hospital Central", type: "A+", distance: "2,4 km", urgent: true }, { name: "Banco de Sangue Regional", type: "AB+", distance: "5,1 km", urgent: false }].map(request =>
-              <Link to="/solicitacao" key={request.name} className="flex min-h-[74px] items-center gap-3 rounded-[16px] border border-border bg-background px-3 py-2 transition-colors hover:bg-accent" aria-label={`Ver solicitação de exemplo de ${request.name}`}>
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-extrabold text-primary-foreground">{request.type}</span>
-                <div className="min-w-0 flex-1"><h3 className="text-xs font-extrabold leading-tight">{request.name}</h3><p className="mt-1 flex items-center gap-0.5 text-[11px] text-muted-foreground"><MapPin size={11} /> {request.distance}</p></div>
-                <span className={`shrink-0 rounded-full px-2 py-1 text-[10px] font-bold ${request.urgent ? "bg-warning text-warning-foreground" : "bg-muted text-muted-foreground"}`}>{request.urgent ? "Urgente" : "Normal"}</span>
-              </Link>
-            )}
-          </div>
+          <div className="space-y-2">{sampleRequests.map(r => <RequestCard key={r.id} request={r} />)}</div>
         </section>
       </div>
       <nav aria-label="Navegação principal" className="grid h-[68px] grid-cols-4 border-t border-border bg-background">
