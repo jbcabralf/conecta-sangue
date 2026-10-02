@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      blood_requests: {
+        Row: {
+          blood_type: string
+          created_at: string
+          id: string
+          location: string
+          patient_name: string
+          requester_kind: string
+          urgent: boolean
+          user_id: string
+        }
+        Insert: {
+          blood_type: string
+          created_at?: string
+          id?: string
+          location: string
+          patient_name: string
+          requester_kind: string
+          urgent?: boolean
+          user_id?: string
+        }
+        Update: {
+          blood_type?: string
+          created_at?: string
+          id?: string
+          location?: string
+          patient_name?: string
+          requester_kind?: string
+          urgent?: boolean
+          user_id?: string
+        }
+        Relationships: []
+      }
       donor_profiles: {
         Row: {
           blood_type: string
