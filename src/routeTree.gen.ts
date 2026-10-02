@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as InicioRouteImport } from './routes/inicio'
+import { Route as NovaSolicitacaoRouteImport } from './routes/nova-solicitacao'
+import { Route as SolicitacaoRouteImport } from './routes/solicitacao'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +24,49 @@ const InicioRoute = InicioRouteImport.update({
   path: '/inicio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NovaSolicitacaoRoute = NovaSolicitacaoRouteImport.update({
+  id: '/nova-solicitacao',
+  path: '/nova-solicitacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolicitacaoRoute = SolicitacaoRouteImport.update({
+  id: '/solicitacao',
+  path: '/solicitacao',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/inicio': typeof InicioRoute
+  '/nova-solicitacao': typeof NovaSolicitacaoRoute
+  '/solicitacao': typeof SolicitacaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/inicio': typeof InicioRoute
+  '/nova-solicitacao': typeof NovaSolicitacaoRoute
+  '/solicitacao': typeof SolicitacaoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/inicio': typeof InicioRoute
+  '/nova-solicitacao': typeof NovaSolicitacaoRoute
+  '/solicitacao': typeof SolicitacaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/inicio'
+  fullPaths: '/' | '/inicio' | '/nova-solicitacao' | '/solicitacao'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/inicio'
-  id: '__root__' | '/' | '/inicio'
+  to: '/' | '/inicio' | '/nova-solicitacao' | '/solicitacao'
+  id: '__root__' | '/' | '/inicio' | '/nova-solicitacao' | '/solicitacao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   InicioRoute: typeof InicioRoute
+  NovaSolicitacaoRoute: typeof NovaSolicitacaoRoute
+  SolicitacaoRoute: typeof SolicitacaoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InicioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nova-solicitacao': {
+      id: '/nova-solicitacao'
+      path: '/nova-solicitacao'
+      fullPath: '/nova-solicitacao'
+      preLoaderRoute: typeof NovaSolicitacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solicitacao': {
+      id: '/solicitacao'
+      path: '/solicitacao'
+      fullPath: '/solicitacao'
+      preLoaderRoute: typeof SolicitacaoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   InicioRoute: InicioRoute,
+  NovaSolicitacaoRoute: NovaSolicitacaoRoute,
+  SolicitacaoRoute: SolicitacaoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
