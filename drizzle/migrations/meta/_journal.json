@@ -8,6 +8,13 @@
       "when": 1790961491840,
       "tag": "0000_create_donor_profiles",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790963368357,
+      "tag": "0001_create_blood_requests",
+      "breakpoints": true
     }
   ]
 }

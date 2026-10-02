@@ -11,4 +11,5 @@
 
 - Keep donor identity in Cloud Auth and donor details in an owner-scoped `donor_profiles` table; this avoids exposing health-adjacent profile data across users.
 - Keep the prototype's sample campaigns, requests, and donation status clearly distinguished from verified live information until those workflows exist.
-- Keep request confirmation and publication as local prototype interactions until a verified live request workflow is implemented; this prevents demo actions from appearing operational.
+- Save user-created requests in an owner-scoped `blood_requests` table visible only to their author, and label them as not sent to donors; interest confirmation stays a local demo until a verified workflow exists, so nothing appears operational.
+- Compute donor/recipient compatibility from the shared ABO/Rh matrix in `src/lib/blood.ts`; never hardcode a blood type in UI copy.
