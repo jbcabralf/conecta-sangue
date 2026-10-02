@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Bell, Check, Clock3, Droplet, Flag, House, MapPin, PlusCircle, ShieldCheck } from "lucide-react";
+import { Bell, Check, Clock3, Flag, House, MapPin, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -37,8 +37,8 @@ function Home() {
         if (data) setProfile(data);
         else {
           const metadata = user.user_metadata;
-          if (typeof metadata.full_name === "string" && typeof metadata.neighborhood_city === "string" && typeof metadata.blood_type === "string" && user.email) {
-            const candidate = { id: user.id, email: user.email, full_name: metadata.full_name, neighborhood_city: metadata.neighborhood_city, blood_type: metadata.blood_type };
+          if (typeof metadata['full_name'] === "string" && typeof metadata['neighborhood_city'] === "string" && typeof metadata['blood_type'] === "string" && user.email) {
+            const candidate = { id: user.id, email: user.email, full_name: metadata['full_name'], neighborhood_city: metadata['neighborhood_city'], blood_type: metadata['blood_type'] };
             const { error } = await supabase.from("donor_profiles").upsert(candidate);
             if (!error && active) setProfile(candidate);
           }
