@@ -1,0 +1,3 @@
+- [x] Reproduzir a tela 1 (cadastro) com visual do PDF e cadastro persistente.
+- [x] Reproduzir a tela 2 (início) com dados do protótipo claramente identificados como exemplos.
+- [x] Conferir apresentação em celular e computador e validar erros da prévia.
