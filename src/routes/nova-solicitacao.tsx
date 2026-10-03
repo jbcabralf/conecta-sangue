@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { Check, Clock3, Flag, House, PlusCircle, ShieldCheck } from "lucide-react";
+import { Check, ShieldCheck } from "lucide-react";
+import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -92,12 +93,7 @@ function NewRequest() {
         <Button variant="blood" size="blood" type="submit" disabled={saving} className="mt-auto">{saving ? "Salvando..." : "Publicar solicitação"}</Button>
       </form>
 
-      <nav aria-label="Navegação principal" className="grid h-[68px] grid-cols-4 border-t border-border bg-background">
-        <Link to="/inicio" className="flex flex-col items-center justify-center gap-1 text-muted-foreground"><House size={19} /><span className="text-[10px] font-semibold">Início</span></Link>
-        <span className="flex flex-col items-center justify-center gap-1 text-muted-foreground" aria-label="Campanhas: disponível em breve"><Flag size={19} /><span className="text-[10px] font-semibold">Campanhas</span></span>
-        <Link to="/nova-solicitacao" aria-current="page" className="flex flex-col items-center justify-center gap-1 text-primary"><PlusCircle size={19} strokeWidth={2.3} /><span className="text-[10px] font-bold">Pedir sangue</span></Link>
-        <span className="flex flex-col items-center justify-center gap-1 text-muted-foreground" aria-label="Histórico: disponível em breve"><Clock3 size={19} /><span className="text-[10px] font-semibold">Histórico</span></span>
-      </nav>
+      <BottomNav active="/nova-solicitacao" />
     </div>
   </main>;
 }

@@ -1,6 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Bell, Check, Clock3, Flag, House, MapPin, PlusCircle } from "lucide-react";
+import { Bell, Check, MapPin } from "lucide-react";
+import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { displayType, sampleRequests, timeAgo, type RequestView } from "@/lib/blood";
@@ -91,7 +92,7 @@ function Home() {
         </Link>
 
         <section className="mt-7" aria-labelledby="campaigns-heading">
-          <div className="mb-2 flex items-center justify-between"><h2 id="campaigns-heading" className="text-base font-extrabold">Campanhas</h2><span className="text-xs font-bold text-primary">Ver todas</span></div>
+          <div className="mb-2 flex items-center justify-between"><h2 id="campaigns-heading" className="text-base font-extrabold">Campanhas</h2><Link to="/campanhas" className="text-xs font-bold text-primary hover:underline">Ver todas</Link></div>
           <article className="rounded-[16px] border border-border bg-background p-4">
             <div className="flex flex-wrap items-center justify-between gap-1.5"><span className="rounded-full bg-alert px-2.5 py-1 text-[10px] font-bold text-primary">⚑ Órgão público de saúde</span><time className="text-[10px] text-muted-foreground" dateTime="2026-09-15">15/09/2026</time></div>
             <h3 className="mt-1 text-sm font-extrabold">Semana da doação de sangue</h3>
@@ -109,12 +110,7 @@ function Home() {
           <div className="space-y-2">{sampleRequests.map(r => <RequestCard key={r.id} request={r} />)}</div>
         </section>
       </div>
-      <nav aria-label="Navegação principal" className="grid h-[68px] grid-cols-4 border-t border-border bg-background">
-        <Link to="/inicio" aria-current="page" className="flex flex-col items-center justify-center gap-1 text-primary"><House size={19} strokeWidth={2.3} /><span className="text-[10px] font-bold">Início</span></Link>
-        <span className="flex flex-col items-center justify-center gap-1 text-muted-foreground" aria-label="Campanhas: disponível em breve"><Flag size={19} /><span className="text-[10px] font-semibold">Campanhas</span></span>
-        <Link to="/nova-solicitacao" className="flex flex-col items-center justify-center gap-1 text-muted-foreground hover:text-primary"><PlusCircle size={19} /><span className="text-[10px] font-semibold">Pedir sangue</span></Link>
-        <span className="flex flex-col items-center justify-center gap-1 text-muted-foreground" aria-label="Histórico: disponível em breve"><Clock3 size={19} /><span className="text-[10px] font-semibold">Histórico</span></span>
-      </nav>
+      <BottomNav active="/inicio" />
     </div>
   </main>;
 }
