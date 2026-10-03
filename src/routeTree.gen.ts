@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CampanhasRouteImport } from './routes/campanhas'
+import { Route as HistoricoRouteImport } from './routes/historico'
 import { Route as InicioRouteImport } from './routes/inicio'
 import { Route as NovaSolicitacaoRouteImport } from './routes/nova-solicitacao'
 import { Route as SolicitacaoRouteImport } from './routes/solicitacao'
@@ -17,6 +19,16 @@ import { Route as SolicitacaoRouteImport } from './routes/solicitacao'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CampanhasRoute = CampanhasRouteImport.update({
+  id: '/campanhas',
+  path: '/campanhas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoricoRoute = HistoricoRouteImport.update({
+  id: '/historico',
+  path: '/historico',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InicioRoute = InicioRouteImport.update({
@@ -37,12 +49,16 @@ const SolicitacaoRoute = SolicitacaoRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/campanhas': typeof CampanhasRoute
+  '/historico': typeof HistoricoRoute
   '/inicio': typeof InicioRoute
   '/nova-solicitacao': typeof NovaSolicitacaoRoute
   '/solicitacao': typeof SolicitacaoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/campanhas': typeof CampanhasRoute
+  '/historico': typeof HistoricoRoute
   '/inicio': typeof InicioRoute
   '/nova-solicitacao': typeof NovaSolicitacaoRoute
   '/solicitacao': typeof SolicitacaoRoute
@@ -50,20 +66,43 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/campanhas': typeof CampanhasRoute
+  '/historico': typeof HistoricoRoute
   '/inicio': typeof InicioRoute
   '/nova-solicitacao': typeof NovaSolicitacaoRoute
   '/solicitacao': typeof SolicitacaoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/inicio' | '/nova-solicitacao' | '/solicitacao'
+  fullPaths:
+    | '/'
+    | '/campanhas'
+    | '/historico'
+    | '/inicio'
+    | '/nova-solicitacao'
+    | '/solicitacao'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/inicio' | '/nova-solicitacao' | '/solicitacao'
-  id: '__root__' | '/' | '/inicio' | '/nova-solicitacao' | '/solicitacao'
+  to:
+    | '/'
+    | '/campanhas'
+    | '/historico'
+    | '/inicio'
+    | '/nova-solicitacao'
+    | '/solicitacao'
+  id:
+    | '__root__'
+    | '/'
+    | '/campanhas'
+    | '/historico'
+    | '/inicio'
+    | '/nova-solicitacao'
+    | '/solicitacao'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CampanhasRoute: typeof CampanhasRoute
+  HistoricoRoute: typeof HistoricoRoute
   InicioRoute: typeof InicioRoute
   NovaSolicitacaoRoute: typeof NovaSolicitacaoRoute
   SolicitacaoRoute: typeof SolicitacaoRoute
@@ -76,6 +115,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/campanhas': {
+      id: '/campanhas'
+      path: '/campanhas'
+      fullPath: '/campanhas'
+      preLoaderRoute: typeof CampanhasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/historico': {
+      id: '/historico'
+      path: '/historico'
+      fullPath: '/historico'
+      preLoaderRoute: typeof HistoricoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/inicio': {
@@ -104,6 +157,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CampanhasRoute: CampanhasRoute,
+  HistoricoRoute: HistoricoRoute,
   InicioRoute: InicioRoute,
   NovaSolicitacaoRoute: NovaSolicitacaoRoute,
   SolicitacaoRoute: SolicitacaoRoute,

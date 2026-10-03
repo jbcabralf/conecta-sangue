@@ -3,3 +3,5 @@
 - [x] Reproduzir a tela 3 (detalhe e confirmação) e conectar à tela inicial.
 - [x] Reproduzir a tela 4 (nova solicitação) com formulário funcional de demonstração.
 - [x] Conferir as telas 3 e 4 em celular e computador e validar erros da prévia.
+- [x] Tela 5 (campanhas) com publicação salva.
+- [x] Tela 6 (histórico) com intervalo de doação por sexo.

@@ -15,6 +15,13 @@
       "when": 1790963368357,
       "tag": "0001_create_blood_requests",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791049655104,
+      "tag": "0002_campaigns_and_donor_sex",
+      "breakpoints": true
     }
   ]
 }

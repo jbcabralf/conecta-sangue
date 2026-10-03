@@ -27,6 +27,12 @@ const recipientsOf: Record<string, string[]> = {
 };
 
 export const normalizeType = (t: string) => t.replace("−", "-");
+
+export type Sex = "feminino" | "masculino";
+export const donationRules: Record<Sex, { days: number; label: string; perYear: number }> = {
+  feminino: { days: 90, label: "3 em 3 meses", perYear: 3 },
+  masculino: { days: 60, label: "2 em 2 meses", perYear: 4 },
+};
 export const displayType = (t: string) => t.replace("-", "−");
 
 export function canDonate(donor: string, recipient: string) {
