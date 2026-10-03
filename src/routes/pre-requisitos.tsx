@@ -87,7 +87,7 @@ function Prereq() {
         </div>
         <p className="mt-4 text-[11px] text-muted-foreground">Informação educativa baseada nas normas do Ministério da Saúde. A triagem clínica presencial no serviço de hemoterapia é a única avaliação oficial.</p>
       </div>
-      <BottomNav active="historico" />
+      <BottomNav active="/historico" />
     </div>
   </main>;
 }
