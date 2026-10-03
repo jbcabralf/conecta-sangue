@@ -47,6 +47,30 @@ export type Database = {
         }
         Relationships: []
       }
+      campaigns: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          title: string
+          user_id?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       donor_profiles: {
         Row: {
           blood_type: string
@@ -55,6 +79,7 @@ export type Database = {
           full_name: string
           id: string
           neighborhood_city: string
+          sex: string | null
         }
         Insert: {
           blood_type: string
@@ -63,6 +88,7 @@ export type Database = {
           full_name: string
           id: string
           neighborhood_city: string
+          sex?: string | null
         }
         Update: {
           blood_type?: string
@@ -71,6 +97,7 @@ export type Database = {
           full_name?: string
           id?: string
           neighborhood_city?: string
+          sex?: string | null
         }
         Relationships: []
       }
