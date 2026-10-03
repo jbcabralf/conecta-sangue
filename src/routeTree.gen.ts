@@ -14,6 +14,7 @@ import { Route as CampanhasRouteImport } from './routes/campanhas'
 import { Route as HistoricoRouteImport } from './routes/historico'
 import { Route as InicioRouteImport } from './routes/inicio'
 import { Route as NovaSolicitacaoRouteImport } from './routes/nova-solicitacao'
+import { Route as PreRequisitosRouteImport } from './routes/pre-requisitos'
 import { Route as SolicitacaoRouteImport } from './routes/solicitacao'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const NovaSolicitacaoRoute = NovaSolicitacaoRouteImport.update({
   path: '/nova-solicitacao',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PreRequisitosRoute = PreRequisitosRouteImport.update({
+  id: '/pre-requisitos',
+  path: '/pre-requisitos',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SolicitacaoRoute = SolicitacaoRouteImport.update({
   id: '/solicitacao',
   path: '/solicitacao',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/historico': typeof HistoricoRoute
   '/inicio': typeof InicioRoute
   '/nova-solicitacao': typeof NovaSolicitacaoRoute
+  '/pre-requisitos': typeof PreRequisitosRoute
   '/solicitacao': typeof SolicitacaoRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/historico': typeof HistoricoRoute
   '/inicio': typeof InicioRoute
   '/nova-solicitacao': typeof NovaSolicitacaoRoute
+  '/pre-requisitos': typeof PreRequisitosRoute
   '/solicitacao': typeof SolicitacaoRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/historico': typeof HistoricoRoute
   '/inicio': typeof InicioRoute
   '/nova-solicitacao': typeof NovaSolicitacaoRoute
+  '/pre-requisitos': typeof PreRequisitosRoute
   '/solicitacao': typeof SolicitacaoRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/historico'
     | '/inicio'
     | '/nova-solicitacao'
+    | '/pre-requisitos'
     | '/solicitacao'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/historico'
     | '/inicio'
     | '/nova-solicitacao'
+    | '/pre-requisitos'
     | '/solicitacao'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/historico'
     | '/inicio'
     | '/nova-solicitacao'
+    | '/pre-requisitos'
     | '/solicitacao'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   HistoricoRoute: typeof HistoricoRoute
   InicioRoute: typeof InicioRoute
   NovaSolicitacaoRoute: typeof NovaSolicitacaoRoute
+  PreRequisitosRoute: typeof PreRequisitosRoute
   SolicitacaoRoute: typeof SolicitacaoRoute
 }
 
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NovaSolicitacaoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pre-requisitos': {
+      id: '/pre-requisitos'
+      path: '/pre-requisitos'
+      fullPath: '/pre-requisitos'
+      preLoaderRoute: typeof PreRequisitosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/solicitacao': {
       id: '/solicitacao'
       path: '/solicitacao'
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   HistoricoRoute: HistoricoRoute,
   InicioRoute: InicioRoute,
   NovaSolicitacaoRoute: NovaSolicitacaoRoute,
+  PreRequisitosRoute: PreRequisitosRoute,
   SolicitacaoRoute: SolicitacaoRoute,
 }
 export const routeTree = rootRouteImport
