@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -49,6 +49,7 @@ function History() {
     <div className="app-frame sm:min-h-[812px]">
       <div className="flex-1 px-5 pb-8 pt-5">
         <h1 className="text-[23px] font-extrabold leading-tight">Meu histórico</h1>
+        <Link to="/pre-requisitos" className="mt-3 flex items-center justify-between rounded-[14px] bg-alert px-4 py-3 text-sm font-extrabold text-primary hover:bg-secondary">Pré-requisitos e guia do doador <span aria-hidden>›</span></Link>
 
         <section className="mt-4 rounded-[16px] border border-border bg-background p-4" aria-labelledby="interval-h">
           <h2 id="interval-h" className="flex items-center gap-1.5 text-sm font-extrabold"><Info size={15} className="text-primary" /> Intervalo entre doações</h2>

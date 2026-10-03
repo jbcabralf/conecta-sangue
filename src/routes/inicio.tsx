@@ -85,7 +85,7 @@ function Home() {
 
         <div className="flex min-h-[90px] items-center gap-4 rounded-[18px] border border-success-foreground/15 bg-success px-4 py-3 text-success-foreground">
           <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-success-foreground text-primary-foreground"><Check size={22} /></span>
-          <div><p className="text-sm font-extrabold">{signedIn ? "Aptidão não verificada" : "Você pode doar agora"}</p><p className="mt-0.5 text-xs leading-snug">{signedIn ? "Confirme sua aptidão com um serviço de hemoterapia antes de doar." : "Intervalo mínimo entre doações cumprido."}</p></div>
+          <div><p className="text-sm font-extrabold">{signedIn ? "Aptidão não verificada" : "Você pode doar agora"}</p><p className="mt-0.5 text-xs leading-snug">{signedIn ? "Confirme sua aptidão com um serviço de hemoterapia antes de doar." : "Intervalo mínimo entre doações cumprido."}</p><Link to="/pre-requisitos" className="mt-1 inline-block text-xs font-extrabold underline underline-offset-2">Verificar pré-requisitos para hoje</Link></div>
         </div>
         <Link to="/solicitacao" search={{ id: "hospital-central" }} className="mt-3 flex min-h-[72px] items-center gap-3 rounded-[17px] bg-alert px-4 py-3 text-primary transition-colors hover:bg-secondary" aria-label="Abrir solicitação de exemplo do Hospital Central">
           <Bell size={20} className="shrink-0" /><div><p className="text-sm font-extrabold">{signedIn ? "Solicitação de exemplo" : "Nova solicitação compatível"}</p><p className="text-xs leading-snug">Hospital Central precisa de A+ · 2,4 km</p></div>
