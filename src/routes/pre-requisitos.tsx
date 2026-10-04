@@ -67,7 +67,7 @@ function Prereq() {
           {a > 60 && a <= 69 && <p className="mt-2 text-xs text-muted-foreground">Acima de 60 anos, só pode doar quem já doou antes dos 61.</p>}
           <div className="mt-3 space-y-2">
             {checks.map((c) => <label key={c.k} className="flex items-start gap-2 text-xs leading-snug">
-              <input type="checkbox" className="mt-0.5 size-4 accent-[var(--primary)]" checked={!!ans[c.k]} onChange={(e) => { setAns({ ...ans, [c.k]: e.target.checked }); setDone(false); }} />{c.q}
+              <input type="checkbox" className="app-checkbox mt-0.5" checked={!!ans[c.k]} onChange={(e) => { setAns({ ...ans, [c.k]: e.target.checked }); setDone(false); }} />{c.q}
             </label>)}
           </div>
           <Button type="submit" variant="blood" className="mt-4 w-full">Verificar</Button>
