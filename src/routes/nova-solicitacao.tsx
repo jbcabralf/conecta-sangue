@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import { Check, ShieldCheck } from "lucide-react";
+import { Check, ShieldCheck, ScanFace, TriangleAlert } from "lucide-react";
 import { BottomNav } from "@/components/BottomNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -70,7 +70,11 @@ function NewRequest() {
           </div>
         </fieldset>
 
-        <p className="mt-2 flex w-fit items-center gap-1 rounded-full bg-success px-2.5 py-1 text-[10px] font-bold text-success-foreground"><ShieldCheck size={13} /> Identidade validada por biometria facial</p>
+        {requester === "hospital" ? (
+          <p className="mt-2 flex w-fit items-start gap-1.5 rounded-lg bg-success px-2.5 py-2 text-[10px] font-bold leading-relaxed text-success-foreground"><ShieldCheck size={14} className="mt-0.5 shrink-0" /> Identidade validada por biometria facial · exemplo visual, não verificada neste app</p>
+        ) : (
+          <p className="mt-2 flex w-fit items-start gap-1.5 rounded-lg bg-warning px-2.5 py-2 text-[10px] font-bold leading-relaxed text-warning-foreground"><TriangleAlert size={14} className="mt-0.5 shrink-0" /> Valide sua biometria facial antes de publicar uma solicitação.</p>
+        )}
 
         <fieldset className="mt-3">
           <legend className="mb-2 text-xs font-bold">Tipo sanguíneo necessário</legend>
@@ -88,9 +92,15 @@ function NewRequest() {
         <div className="mt-3 space-y-1.5"><Label htmlFor="donation-location" className="text-xs font-bold">Local da doação</Label><Input id="donation-location" value={location} onChange={event => { setLocation(event.target.value); setPublished(false); }} required maxLength={120} placeholder="Hospital ou banco de sangue" className="app-field" /></div>
         <div className="mt-3 space-y-1.5"><Label htmlFor="patient-name" className="text-xs font-bold">Nome do paciente</Label><Input id="patient-name" value={patient} onChange={event => { setPatient(event.target.value); setPublished(false); }} required maxLength={120} placeholder="Quem vai receber a doação?" className="app-field" /></div>
 
+        <section aria-labelledby="face-check-title" className="mt-4 border-t border-border pt-3">
+          <h2 id="face-check-title" className="flex items-center gap-2 text-xs font-bold"><ScanFace size={17} className="text-primary" /> Verificação da biometria facial</h2>
+          <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">Obrigatória antes da publicação. A verificação real ainda não está disponível; nenhuma imagem do seu rosto será coletada.</p>
+          <Button type="button" variant="bloodOutline" disabled className="mt-2 w-full text-xs">Verificar biometria facial · indisponível</Button>
+        </section>
+
         {published && <p role="status" className="mt-3 flex items-start gap-2 rounded-lg bg-success p-3 text-xs leading-relaxed text-success-foreground"><Check size={15} className="mt-0.5 shrink-0" /> Solicitação salva na sua conta. Ela ainda não é enviada a doadores.</p>}
         {error && <p role="alert" className="mt-3 rounded-lg bg-alert p-3 text-xs text-primary">{error}{error.startsWith("Entre") && <> <Link to="/" className="font-bold underline">Entrar</Link></>}</p>}
-        <Button variant="blood" size="blood" type="submit" disabled={saving} className="mt-auto">{saving ? "Salvando..." : "Publicar solicitação"}</Button>
+        <Button variant="blood" size="blood" type="submit" disabled={saving} className="mt-auto">{saving ? "Salvando..." : "Salvar solicitação de demonstração"}</Button>
       </form>
 
       <BottomNav active="/nova-solicitacao" />
