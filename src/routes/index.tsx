@@ -107,3 +107,34 @@ function Registration() {
     </div>
   </main>;
 }
+
+const pjDocs = [
+  "Cartão CNPJ atualizado",
+  "Contrato Social (ou Estatuto Social)",
+  "Alvará da Vigilância Sanitária",
+  "Comprovante de registro no CNES",
+  "Certificado de Regularidade Técnica (CRM) do Diretor Técnico",
+  "Alvará de Localização e Funcionamento (Prefeitura)",
+  "Documento de identidade com foto (RG ou CNH) do responsável pelo cadastro",
+  "Procuração simples (apenas se o responsável pelo cadastro não for um dos sócios listados no Contrato Social)",
+];
+
+const pjMail = "mailto:cadastro@conectasangue.com.br?subject=Verificação%20de%20conformidade%20%E2%80%94%20ConectaSangue";
+
+function PjPanel() {
+  return <div className="mt-6 rounded-xl border border-border bg-background p-4">
+    <p className="text-sm font-extrabold">Cadastro de hospitais e bancos de sangue</p>
+    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Para garantir a segurança da nossa rede de solicitantes, o cadastro de hospitais e bancos de sangue privados no ConectaSangue passa por uma verificação de conformidade.</p>
+    <p className="mt-3 text-xs leading-relaxed font-bold">Por favor, envie as cópias (PDF ou imagem) dos documentos abaixo para <a href="mailto:cadastro@conectasangue.com.br" className="text-primary underline underline-offset-2">cadastro@conectasangue.com.br</a>:</p>
+    <ul className="mt-2 space-y-1.5">
+      {pjDocs.map(doc => <li key={doc} className="flex gap-2 text-xs leading-relaxed text-muted-foreground"><span aria-hidden className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />{doc}</li>)}
+    </ul>
+    <div className="mt-4 rounded-lg bg-secondary p-3">
+      <p className="text-xs font-extrabold text-primary">Próximos passos</p>
+      <p className="mt-1 text-xs leading-relaxed text-muted-foreground">Assim que recebermos o e-mail, nossa equipe fará a análise técnica da documentação. Após a aprovação, você receberá um link de confirmação para cadastrar sua senha e acessar a plataforma.</p>
+    </div>
+    <Button asChild variant="blood" size="blood" className="mt-4">
+      <a href={pjMail}>Enviar documentos por e-mail</a>
+    </Button>
+  </div>;
+}
