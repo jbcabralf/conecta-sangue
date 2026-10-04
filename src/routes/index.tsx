@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
-import { Droplet, ShieldCheck } from "lucide-react";
+import { Building2, Droplet, ShieldCheck, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -28,6 +28,7 @@ function Registration() {
   const [bloodType, setBloodType] = useState("A+");
   const [password, setPassword] = useState("");
   const [mode, setMode] = useState<"register" | "login">("register");
+  const [accountKind, setAccountKind] = useState<"pf" | "pj">("pf");
   const [pending, setPending] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
