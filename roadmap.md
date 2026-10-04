@@ -5,3 +5,4 @@
 - [x] Conferir as telas 3 e 4 em celular e computador e validar erros da prévia.
 - [x] Tela 5 (campanhas) com publicação salva.
 - [x] Tela 6 (histórico) com intervalo de doação por sexo.
+- [x] Diferenciar avisos de validação entre hospital/banco e familiar, e apresentar o campo de biometria antes de publicar sem simular uma validação real.
