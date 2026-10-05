@@ -68,6 +68,7 @@ function NewRequest() {
           <div className="grid grid-cols-2 gap-2">
             <Button type="button" variant="bloodChoice" data-selected={false} aria-pressed={false} disabled className="h-11 cursor-not-allowed opacity-45">Hospital ou banco</Button>
             <Button type="button" variant="bloodChoice" data-selected={requester === "family"} aria-pressed={requester === "family"} onClick={() => setRequester("family")} className="h-11">Familiar</Button>
+          </div>
         </fieldset>
 
         <p className="mt-2 flex w-fit items-start gap-1.5 rounded-lg bg-warning px-2.5 py-2 text-[10px] font-bold leading-relaxed text-warning-foreground"><TriangleAlert size={14} className="mt-0.5 shrink-0" /> Valide sua biometria facial antes de publicar uma solicitação.</p>
