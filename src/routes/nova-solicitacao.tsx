@@ -23,7 +23,7 @@ export const Route = createFileRoute("/nova-solicitacao")({
 const bloodTypes = ["A+", "A−", "B+", "B−", "AB+", "AB−", "O+", "O−"];
 
 function NewRequest() {
-  const [requester, setRequester] = useState<"hospital" | "family">("hospital");
+  const [requester, setRequester] = useState<"hospital" | "family">("family");
   const [bloodType, setBloodType] = useState("O−");
   const [urgency, setUrgency] = useState<"normal" | "urgent">("urgent");
   const [location, setLocation] = useState("");
@@ -31,6 +31,7 @@ function NewRequest() {
   const [published, setPublished] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [faceCheck, setFaceCheck] = useState(false);
   const navigate = useNavigate();
 
   async function submit(event: FormEvent<HTMLFormElement>) {
