@@ -66,10 +66,8 @@ function NewRequest() {
         <fieldset className="mt-3">
           <legend className="sr-only">Quem está solicitando</legend>
           <div className="grid grid-cols-2 gap-2">
-            <Button type="button" variant="bloodChoice" data-selected={false} aria-pressed={false} disabled aria-describedby="hospital-locked-note" className="h-11 cursor-not-allowed opacity-45">Hospital ou banco</Button>
+            <Button type="button" variant="bloodChoice" data-selected={false} aria-pressed={false} disabled className="h-11 cursor-not-allowed opacity-45">Hospital ou banco</Button>
             <Button type="button" variant="bloodChoice" data-selected={requester === "family"} aria-pressed={requester === "family"} onClick={() => setRequester("family")} className="h-11">Familiar</Button>
-          </div>
-          <p id="hospital-locked-note" className="mt-2 text-[10px] leading-relaxed text-muted-foreground">Para ativar esse campo, entre com seu cadastro de pessoa jurídica.</p>
         </fieldset>
 
         <p className="mt-2 flex w-fit items-start gap-1.5 rounded-lg bg-warning px-2.5 py-2 text-[10px] font-bold leading-relaxed text-warning-foreground"><TriangleAlert size={14} className="mt-0.5 shrink-0" /> Valide sua biometria facial antes de publicar uma solicitação.</p>
