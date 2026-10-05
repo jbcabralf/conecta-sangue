@@ -66,16 +66,13 @@ function NewRequest() {
         <fieldset className="mt-3">
           <legend className="sr-only">Quem está solicitando</legend>
           <div className="grid grid-cols-2 gap-2">
-            <Button type="button" variant="bloodChoice" data-selected={requester === "hospital"} aria-pressed={requester === "hospital"} onClick={() => setRequester("hospital")} className="h-11">Hospital ou banco</Button>
+            <Button type="button" variant="bloodChoice" data-selected={false} aria-pressed={false} disabled aria-describedby="hospital-locked-note" className="h-11 cursor-not-allowed opacity-45">Hospital ou banco</Button>
             <Button type="button" variant="bloodChoice" data-selected={requester === "family"} aria-pressed={requester === "family"} onClick={() => setRequester("family")} className="h-11">Familiar</Button>
           </div>
+          <p id="hospital-locked-note" className="mt-2 text-[10px] leading-relaxed text-muted-foreground">Para ativar esse campo, entre com seu cadastro de pessoa jurídica.</p>
         </fieldset>
 
-        {requester === "hospital" ? (
-          <p className="mt-2 flex w-fit items-start gap-1.5 rounded-lg bg-success px-2.5 py-2 text-[10px] font-bold leading-relaxed text-success-foreground"><ShieldCheck size={14} className="mt-0.5 shrink-0" /> Identidade validada por biometria facial · exemplo visual, não verificada neste app</p>
-        ) : (
-          <p className="mt-2 flex w-fit items-start gap-1.5 rounded-lg bg-warning px-2.5 py-2 text-[10px] font-bold leading-relaxed text-warning-foreground"><TriangleAlert size={14} className="mt-0.5 shrink-0" /> Valide sua biometria facial antes de publicar uma solicitação.</p>
-        )}
+        <p className="mt-2 flex w-fit items-start gap-1.5 rounded-lg bg-warning px-2.5 py-2 text-[10px] font-bold leading-relaxed text-warning-foreground"><TriangleAlert size={14} className="mt-0.5 shrink-0" /> Valide sua biometria facial antes de publicar uma solicitação.</p>
 
         <fieldset className="mt-3">
           <legend className="mb-2 text-xs font-bold">Tipo sanguíneo necessário</legend>
