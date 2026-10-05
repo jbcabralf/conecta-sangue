@@ -92,13 +92,14 @@ function NewRequest() {
 
         <section aria-labelledby="face-check-title" className="mt-4 border-t border-border pt-3">
           <h2 id="face-check-title" className="flex items-center gap-2 text-xs font-bold"><ScanFace size={17} className="text-primary" /> Verificação da biometria facial</h2>
-          <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">Obrigatória antes da publicação. A verificação real ainda não está disponível; nenhuma imagem do seu rosto será coletada.</p>
-          <Button type="button" variant="bloodOutline" disabled className="mt-2 w-full text-xs">Verificar biometria facial · indisponível</Button>
+          <p className="mt-1 text-[11px] leading-relaxed text-muted-foreground">Obrigatória antes da publicação. Este botão é apenas uma demonstração do app; nenhuma imagem do seu rosto é coletada.</p>
+          <Button type="button" variant="bloodOutline" onClick={() => setFaceCheck(true)} aria-pressed={faceCheck} className="mt-2 w-full text-xs">{faceCheck ? "Verificação de demonstração concluída" : "Verificar biometria facial"}</Button>
+          {faceCheck && <p role="status" className="mt-2 text-[10px] leading-relaxed text-muted-foreground">Verificação de demonstração registrada neste protótipo. A conferência oficial acontece na triagem do local de doação.</p>}
         </section>
 
         {published && <p role="status" className="mt-3 flex items-start gap-2 rounded-lg bg-success p-3 text-xs leading-relaxed text-success-foreground"><Check size={15} className="mt-0.5 shrink-0" /> Solicitação salva na sua conta. Ela ainda não é enviada a doadores.</p>}
         {error && <p role="alert" className="mt-3 rounded-lg bg-alert p-3 text-xs text-primary">{error}{error.startsWith("Entre") && <> <Link to="/" className="font-bold underline">Entrar</Link></>}</p>}
-        <Button variant="blood" size="blood" type="submit" disabled={saving} className="mt-auto">{saving ? "Salvando..." : "Salvar solicitação de demonstração"}</Button>
+        <Button variant="blood" size="blood" type="submit" disabled={saving} className="mt-auto">{saving ? "Salvando..." : "Salvar solicitação"}</Button>
       </form>
 
       <BottomNav active="/nova-solicitacao" />
