@@ -52,7 +52,6 @@ Protótipo funcional: https://conecta-sangue.lovable.app
 ### Descartado ou adiado
 
 - Notificações reais, geolocalização, biometria e verificação automática de hospitais (ver "Fora do escopo").
-- *(O grupo deve complementar com o que foi descartado do esboço anterior, se houver.)*
 
 ## 5. Registro de mudanças de escopo
 
