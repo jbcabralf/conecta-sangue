@@ -1,14 +1,18 @@
-# Welcome to your Lovable project
+# ConectaSangue
+
+faça um app que funcione com as informações do pdf em anexo. faça, primeiramente, apenas as telas 1 e 2 do arquivo. ou seja, 1. cadastro do doador e 2. início. deixe com o mesmo aspecto de cores e fontes que está demonstrado
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://conecta-sangue.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/d44e889f-0a98-48be-b8ed-b2da8acf6abd).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +24,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
