@@ -18,3 +18,8 @@ Microsserviços dividem o sistema em serviços independentes, cada um com seu pr
 ## Limite atual
 
 As telas ainda chamam o Supabase diretamente, sem uma camada de serviço no meio, o que mistura apresentação e acesso a dados. Separar essa camada é a principal melhoria de manutenção preventiva prevista para manter as fronteiras entre os módulos claras.
+
+
+## Relação com as camadas e o MVC
+
+Os módulos acima são a divisão física do repositório. A divisão lógica em 4 camadas (apresentação, aplicação, domínio e infraestrutura) e o mapeamento Model, View e Controller de cada fluxo estão em [arquitetura-mvc-camadas.md](arquitetura-mvc-camadas.md). Esse documento também registra onde as fronteiras ainda estão misturadas: telas que chamam o Supabase direto e regras de pré-triagem escritas dentro da tela.
