@@ -1,26 +1,58 @@
 # ConectaSangue
 
-faça um app que funcione com as informações do pdf em anexo. faça, primeiramente, apenas as telas 1 e 2 do arquivo. ou seja, 1. cadastro do doador e 2. início. deixe com o mesmo aspecto de cores e fontes que está demonstrado
+Aplicativo que avisa doadores de sangue quando alguém perto deles precisa do seu tipo sanguíneo.
 
-This project was built with [Lovable](https://lovable.dev).
+**Protótipo publicado:** https://conecta-sangue.lovable.app
 
-**Live app**: https://conecta-sangue.lovable.app
+Projeto acadêmico de primeiro período (Ciência da Computação). O protótipo foi criado no Lovable e este repositório é a entrega versionada: código, decisões de arquitetura, histórico de produção, manuais, pitch e canvas.
 
-## Build with Lovable
+## Mapa do repositório
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/d44e889f-0a98-48be-b8ed-b2da8acf6abd).
+| Quero... | Vá para |
+|---|---|
+| Testar o protótipo sem conta | [`prototipo/README.md`](prototipo/README.md) (link, telas, exportações e fluxos) |
+| Entender o problema e o que está dentro e fora do escopo | [`docs/escopo.md`](docs/escopo.md) |
+| Ver a arquitetura em camadas e o MVC | [`docs/arquitetura-mvc-camadas.md`](docs/arquitetura-mvc-camadas.md) |
+| Ver por que monolito modular e não microsserviços | [`docs/monolito-modular.md`](docs/monolito-modular.md) |
+| Navegar pelos fluxos de tela | [`docs/fluxos-de-tela.md`](docs/fluxos-de-tela.md) |
+| Ver a revisão de qualidade das telas | [`docs/metricas-de-qualidade.md`](docs/metricas-de-qualidade.md) |
+| Ver os tipos de manutenção e o custo do caos | [`docs/manutencao.md`](docs/manutencao.md) |
+| Ver como o projeto foi produzido, ligado aos commits | [`docs/producao-passo-a-passo.md`](docs/producao-passo-a-passo.md) |
+| Aprender a usar o aplicativo | [`manuais/manual-do-usuario.md`](manuais/manual-do-usuario.md) |
+| Rodar, alterar e manter o código | [`manuais/manual-tecnico.md`](manuais/manual-tecnico.md) |
+| Ler a apresentação do produto | [`pitch/Pitch.md`](pitch/Pitch.md) |
+| Ver a síntese de problema, canais e riscos | [`pitch/Canvas.md`](pitch/Canvas.md) |
+| Ver o plano e o andamento | [`roadmap.md`](roadmap.md) |
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+## Estrutura
 
-## Development
+```
+README.md       este mapa
+docs/           visão, arquitetura, qualidade, manutenção e produção
+manuais/        manual do usuário e manual técnico
+pitch/          Pitch.md e Canvas.md
+prototipo/      link público, telas, exportações e fluxos
+src/            código da aplicação (rotas, componentes, regras e integração com o Supabase)
+supabase/       configuração do Supabase
+```
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Como rodar localmente
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
+Requisitos: Node.js e npm.
+
+```
+git clone <url-do-repositorio>
+cd conecta-sangue
 npm i
 npm run dev
 ```
+
+Mais comandos, regras de versionamento e a sincronização com o Lovable estão no [manual técnico](manuais/manual-tecnico.md).
+
+## Como contribuir
+
+Toda mudança entra por branch e pull request, com revisão de outro integrante antes do merge. Detalhes na seção 7 do [manual técnico](manuais/manual-tecnico.md).
+
+## Aviso
+
+O protótipo usa dados de exemplo e ações demonstrativas (notificações, biometria, confirmação de interesse). É informativo: a triagem oficial para doar é feita presencialmente no serviço de hemoterapia. Use apenas dados fictícios.
