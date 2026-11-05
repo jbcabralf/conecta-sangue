@@ -32,7 +32,10 @@ Protótipo funcional: https://conecta-sangue.lovable.app
 ### Fora do escopo (itens simulados ou excluídos)
 
 - Envio real de notificações aos doadores.
-- Geolocalização e cálculo de distância reais (as distâncias exibidas são de exemplo).
+- Geolocalização e cálculo de distância reais. O match entre doador e solicitação é pelo bairro cadastrado, e as distâncias exibidas são de exemplo.
+- Integração real com sistemas hospitalares.
+- Pagamento de qualquer natureza.
+- Cadastro de menores de idade e doação de outros materiais biológicos.
 - Verificação real de biometria facial (o botão é demonstração e não coleta imagem).
 - Validação real de identidade do solicitante e aprovação automática de hospitais.
 - Publicação de solicitações por "Hospital ou banco" (opção desabilitada na tela).
@@ -51,7 +54,7 @@ Protótipo funcional: https://conecta-sangue.lovable.app
 
 ### Acrescentado pelo grupo
 
-- Tela de pré-requisitos (pré-triagem "Posso doar hoje?" e cartilha do doador). Não estava no PDF de referência: foi uma decisão do grupo para orientar o doador antes de doar.
+- Tela de pré-requisitos (pré-triagem "Posso doar hoje?" e cartilha do doador). Decisão do grupo, registrada como RF11 nos requisitos, para orientar o doador antes de ir ao hemocentro.
 
 ### Descartado ou adiado
 
@@ -67,7 +70,7 @@ O pedido inicial ao Lovable era **apenas as telas 1 e 2**. O escopo cresceu ao l
 | 02/10 | **Telas 3 e 4:** detalhe da solicitação e nova solicitação. Motivo: seguir o PDF de referência. | 2 (agora leva à 3), 3 e 4 | `601f74f`, `328ed46` |
 | 02/10 | **Persistência com conta real (Supabase).** Motivo: cadastro e solicitações precisavam sobreviver ao recarregar a página. | 1 (modo "entrar"), 2, 3 e 4 | `25dfaa4` |
 | 03/10 | **Campanhas e regra de intervalo de doação.** Motivo: completar as telas 5 e 6 do PDF. | 5 e 6 (novas) | `bbdc1b6` |
-| 03/10 | **Tela de pré-requisitos.** Motivo: orientar o doador antes de doar. Decisão do grupo, fora do PDF de referência. | 7 (nova), ligada ao início e ao histórico | `b707cc1` |
+| 03/10 | **Tela de pré-requisitos.** Motivo: orientar o doador antes de doar. Decisão do grupo, registrada como RF11 nos requisitos. | 7 (nova), ligada ao início e ao histórico | `b707cc1` |
 | 04/10 | **Cadastro de pessoa jurídica.** Motivo: hospitais e bancos precisam de verificação de conformidade antes de usar a plataforma. | 1 (seletor e painel de documentos) | `f5eb7df` |
 | 04/10 | **Caixas de seleção unificadas e avisos e validações ajustados.** Motivo: consistência visual e mensagens de erro claras. | 1, 4 e 7 | `11bc799`, `fa0ebe4` |
 | 05/10 | **Solicitação: distinção hospital/familiar e etapa de biometria (demonstração).** Motivo: diferenciar quem publica sem simular validação real. | 4 | `7a53c72` |
