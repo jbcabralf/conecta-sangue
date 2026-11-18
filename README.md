@@ -13,6 +13,7 @@ Projeto acadêmico de primeiro período (Ciência da Computação). O protótipo
 | Testar o protótipo sem conta | [`prototipo/README.md`](prototipo/README.md) (link, telas, exportações e fluxos) |
 | Entender o problema e o que está dentro e fora do escopo | [`docs/escopo.md`](docs/escopo.md) |
 | Ver a arquitetura em camadas e o MVC | [`docs/arquitetura-mvc-camadas.md`](docs/arquitetura-mvc-camadas.md) |
+| Ver os requisitos e o que o protótipo atende | [`docs/requisitos.md`](docs/requisitos.md) |
 | Ver por que monolito modular e não microsserviços | [`docs/monolito-modular.md`](docs/monolito-modular.md) |
 | Navegar pelos fluxos de tela | [`docs/fluxos-de-tela.md`](docs/fluxos-de-tela.md) |
 | Ver a revisão de qualidade das telas | [`docs/metricas-de-qualidade.md`](docs/metricas-de-qualidade.md) |
@@ -28,7 +29,7 @@ Projeto acadêmico de primeiro período (Ciência da Computação). O protótipo
 
 ```
 README.md       este mapa
-docs/           visão, arquitetura, qualidade, manutenção e produção
+docs/           escopo, requisitos, arquitetura, qualidade, manutenção e produção
 manuais/        manual do usuário e manual técnico
 pitch/          Pitch.md e Canvas.md
 prototipo/      link público, telas, exportações e fluxos

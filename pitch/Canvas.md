@@ -1,25 +1,44 @@
 # Canvas — ConectaSangue
 
-Síntese do problema, da solução, dos canais e dos riscos.
+Resumo do projeto em uma página, com base no Termo de Abertura e nos Requisitos v2.
 
 | Bloco | Conteúdo |
 |---|---|
-| **Problema** | Quem precisa de sangue não tem um canal simples para chegar aos doadores compatíveis. O doador não sabe quando e onde sua doação é necessária. |
-| **Usuários** | Principal: doador de sangue (pessoa física). Secundários: familiar de paciente e hospital ou banco de sangue (pessoa jurídica). |
-| **Proposta de valor** | Avisar o doador quando alguém perto dele precisa do seu tipo sanguíneo e mostrar na hora se ele é compatível. |
-| **Solução (protótipo)** | Cadastro, início com solicitações e campanhas, detalhe da solicitação com compatibilidade, nova solicitação, campanhas, histórico com intervalo entre doações e pré-triagem de aptidão. 7 telas. |
-| **Canais** | Aplicativo web publicado (https://conecta-sangue.lovable.app). E-mail para o cadastro de hospitais e bancos de sangue, com envio de documentos. Campanhas de conscientização de órgãos de saúde, dentro do aplicativo. |
-| **Fora do escopo (hoje)** | Notificações reais, geolocalização real, biometria real, validação real de identidade, aprovação automática de hospitais, divulgação das campanhas a outros usuários, dados clínicos reais, qualquer decisão médica. |
-| **Medidas de sucesso do protótipo** | A tarefa principal termina em até 3 telas. Um avaliador terceiro navega do início ao fim sem perguntar nada à equipe. Telas, regras e requisitos usam os mesmos nomes (ver [`../docs/metricas-de-qualidade.md`](../docs/metricas-de-qualidade.md)). |
+| Problema | Doadores de sangue não sabem onde e quando há necessidade real e urgente. Quem precisa de sangue recorre a grupos de WhatsApp e depende de a mensagem chegar a alguém compatível. |
+| Objetivo | Aproximar doadores e solicitantes em tempo real. |
+| Público-alvo | Doador (pessoa física), familiar de paciente, hospital ou banco de sangue. |
+| Proposta de valor | Avisar o doador quando o tipo sanguíneo dele é necessário no bairro e mostrar na hora se ele é compatível. |
+| Vantagem ao doador | Hemograma simples (hemoglobina, hematócrito e plaquetas), sem custo, já que os bancos de sangue fazem os exames de qualquer forma. Ver [`requisitos.md`](../docs/requisitos.md), RF9. |
+| Solução (protótipo) | 7 telas: cadastro, início, solicitação, nova solicitação, campanhas, histórico e pré-requisitos. |
+| Canais | Aplicativo web (https://conecta-sangue.lovable.app), e-mail para o cadastro de hospitais e bancos, e campanhas de órgãos públicos de saúde dentro do aplicativo. |
+| Parceiros e financiamento | Órgão público de saúde publica campanhas e não financia o app. Um patrocinador (ONG, fundação ou empresa) financia o desenvolvimento. |
+| Equipe | Luanna (Product Owner), Julia (Scrum Master), João e Paulo. Luanna e Julia também desenvolvem. |
+| Fora do escopo | Integração com sistemas hospitalares, pagamentos, menores de idade, outros materiais biológicos, geolocalização real e biometria real. |
 
-## Riscos e como o projeto os trata
+## Custos e prazo (estimativa)
 
-| Risco | Tratamento atual | Pendente |
+MVP enxuto, cerca de 5 meses de desenvolvimento, com salários de mercado de 2026. É uma estimativa e não um orçamento fechado.
+
+| Item | Valor |
+|---|---|
+| Desenvolvimento | R$ 307 a 410 mil |
+| Operação no 1º ano | R$ 654 a 819 mil |
+| Marketing no 1º ano | R$ 111 mil |
+| Total até o fim do 1º ano | R$ 1,07 a 1,34 milhão |
+| Nuvem (AWS), para 100 mil doadores | cerca de US$ 658 por mês (R$ 3,3 mil) |
+
+## Riscos
+
+Os três riscos do Termo de Abertura e o que o protótipo faz a respeito.
+
+| Risco | Resposta do projeto | No protótipo |
 |---|---|---|
-| Dados sensíveis do doador (tipo sanguíneo, sexo, local) | Dados do doador em tabela com acesso restrito ao dono; o Início mostra só o primeiro nome | Conferir as regras de acesso do Supabase e o conteúdo do `.env` |
-| Solicitações falsas ou de má-fé | Identidade do solicitante não é validada, e a tela diz "Identidade ainda não verificada" para solicitações salvas; "Hospital ou banco" desabilitado | Validação real de identidade e de hospitais |
-| Usuário tomar decisão médica pelo aplicativo | Textos informam que a triagem oficial é presencial; a aptidão aparece como "não verificada" | Manter o aviso em toda tela que fala de aptidão |
-| Parecer que o aplicativo funciona de verdade quando é demonstração | Todo item simulado é rotulado e as ações demonstrativas dizem que nada real foi enviado | Revisar os rótulos a cada nova tela |
-| Valor central ausente (sem notificação real o doador não é avisado) | Declarado como fora do escopo | Próximo incremento do [`Pitch.md`](Pitch.md) |
-| Dependência de Lovable e Supabase | Regras de negócio em `src/lib/blood.ts`, independentes das duas | Camada de serviço entre telas e Supabase |
-| Documentação defasada em relação ao protótipo | Registro de mudanças no [`escopo.md`](../docs/escopo.md) e PR por mudança | Manter o registro no mesmo ciclo da mudança |
+| O escopo crescer demais | O órgão público só publica campanhas, e o hemograma simples é só exibição de resultado, sem integração com laboratório. | Tela Campanhas e cartão de hemograma no Histórico. |
+| Dificuldade em modelar a elegibilidade | Regra fixa de intervalo por sexo biológico, mais um checklist informativo. | Histórico (90 e 60 dias) e tela Pré-requisitos. |
+| Solicitações falsas ou não verificáveis | Biometria facial do solicitante e análise de documentos de hospitais e bancos. | Botão de biometria demonstrativo e cadastro de pessoa jurídica com 8 documentos. A verificação real não existe e a biometria ainda não é exigida para salvar (RN6). |
+
+## Outros pontos de atenção
+
+- Dados de saúde ficam no Supabase, e as regras de acesso ainda precisam ser conferidas (RNF2).
+- A regra de compatibilidade fica em `src/lib/blood.ts`, separada de Lovable e Supabase.
+- A documentação acompanha o protótipo: cada mudança de escopo entra no [`escopo.md`](../docs/escopo.md) no mesmo pull request.
