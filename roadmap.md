@@ -33,4 +33,4 @@ Origem: [`docs/metricas-de-qualidade.md`](docs/metricas-de-qualidade.md) e [`doc
 - [ ] Criar uma camada de serviço entre as telas e o Supabase (preventiva).
 - [ ] Mensagem de estado vazio nas listas (perfectiva).
 - [ ] Unificar `familiar`/`family` e `−`/`-` (perfectiva).
-- [ ] Origem a confirmar da tela de pré-requisitos no `escopo.md`.
+- [x] Origem da tela de pré-requisitos registrada no `escopo.md` (decisão do grupo, RF11).
